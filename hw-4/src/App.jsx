@@ -4,53 +4,34 @@ import { Header } from './Components/Header/Header'
 import { Main } from './Components/Main/Main'
 import { Modal } from './Components/Modal/Modal';
 
-
 function App() {
-  const [openModal,setOpenModal] = useState(false);
-  const [imgUrl,setImgUrl] = useState("");
-  const [title,setTitle] = useState("");
-  const [rating,setRating] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+  const [move,setMovie] = useState([]);
+
+  const addMoveFunc = (data) => {
+    const upDatas = [...move, data]
+    setMovie(upDatas);
+
+    setOpenModal((prev) => !prev)
+  } 
 
   const openModalHandler = (e) =>{
-    setOpenModal((prev)=>!prev)
     e.preventDefault()
+    setOpenModal((prev)=>!prev)
   }
-
-  const addImgUrl= (e) =>{
-    setImgUrl(e.target.value)
-  };
-
-  const addTitle = (e) =>{
-    setTitle(e.target.value)
-  };
-
-  const addRating = (e) =>{
-    setRating(e.target.value)
+  
+  const deleteItem = (id) => {
+    const newTodos = move.filter((el)=> el.id !== id)
+    setMovie(newTodos)
   }
-
-  const datas = [
-    {
-      img:"data:iuiuuimage/jpeg;base64,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",
-      title:"black phone",
-      rating:"4",
-      id: '1'
-    }
-  ]
 
   return (
     <div className="App">
       <Header openModalHandler={openModalHandler}/>
-      <Main datas={datas}/>
+      <Main setMovie={setMovie} datas={move} deleteItem={deleteItem}/>
       {openModal ? 
-       <Modal 
-      // openModalHandler={openModalHandler}/
-      addImgUrl={addImgUrl}
-      addTitle={addTitle}
-      addRating={addRating}
-      imgUrl={imgUrl}
-      title={title} 
-      // openModal={openModal}
-      rating={rating}/> 
+       <Modal setMovie={setMovie} move = {move} openModal={openModalHandler} addMoveFunc={addMoveFunc}
+     /> 
       :
        null}
    
