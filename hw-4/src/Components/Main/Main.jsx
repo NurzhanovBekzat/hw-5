@@ -2,7 +2,7 @@ import React from 'react'
 import { Movies } from '../MoviesItem/Movies'
 import './Main.css'
 
-export const Main = ({datas, deleteItem}) => {
+export const Main = ({datas, deleteItem,handlerEdit}) => {
  
   return (
     
@@ -16,6 +16,7 @@ export const Main = ({datas, deleteItem}) => {
         title={elem.title}
         rating={elem.rating}
         deleteItem={deleteItem}
+        handlerEdit={handlerEdit}
         />
       ))
     }

@@ -4,7 +4,8 @@ import "./Movie.css"
 
 
 export const 
-Movies = ({img,title,rating, id, deleteItem}) => {
+Movies = ({img,title,rating, id, deleteItem,handlerEdit}) => {
+  console.log(handlerEdit)
 
   // const [todos, setTodos] = useState();
 
@@ -22,7 +23,7 @@ Movies = ({img,title,rating, id, deleteItem}) => {
             <div className='btnName'>
             <Button marginLeft = "10px" color={"white"} background={"#FF8C00"} borderRadius="13px">{rating}/5 stars</Button>
            <Button marginLeft = "10px" color={"white"}  background="red" onClick={() => deleteItem(id)}>DELETE</Button>
-            <Button marginLeft = "10px" color={"white"} background="blue">EDIT</Button>
+            <Button marginLeft = "10px" color={"white"} background="blue" onClick={()=> handlerEdit(id)}>EDIT</Button>
             </div>
            </div>
     </div>
